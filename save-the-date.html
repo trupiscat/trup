@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Save the Date — Raúl & Valeria</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Great+Vibes&family=Lora:ital@1&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #ddd8d0;
+      background: #e0d5cc;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -17,163 +17,209 @@
       justify-content: center;
       padding: 40px 16px;
       gap: 24px;
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Caveat', cursive;
     }
 
     #card {
-      width: 560px;
-      background: #1c1510;
-      padding: 64px 52px 56px;
+      width: 460px;
+      background: #fdf8f5;
+      padding: 36px 40px 44px;
       text-align: center;
       position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      box-shadow: 0 12px 48px rgba(0,0,0,0.13);
     }
 
-    /* thin gold frame inside */
+    /* Sketchy border */
     #card::before {
       content: '';
       position: absolute;
-      inset: 12px;
-      border: 1px solid rgba(201,160,96,0.35);
+      inset: 7px;
+      border: 1.5px dashed rgba(0,0,0,0.18);
       pointer-events: none;
     }
 
-    .nos-casamos {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 7px;
-      text-transform: uppercase;
-      color: #c9a060;
-      margin-bottom: 32px;
+    /* ── SAVE THE DATE curved ── */
+    .svg-title {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto 20px;
     }
 
+    /* ── CAT ── */
+    .cat-circle {
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto;
+      border: 4px solid #f0e8e0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      background: #d8cfc8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+    }
+
+    .cat-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+
+    /* ── RIBBON ── */
+    .ribbon-outer {
+      position: relative;
+      margin: 22px -8px 4px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ribbon-body {
+      position: absolute;
+      inset: 0;
+      background: #eddfc8;
+    }
+
+    /* left fold */
+    .ribbon-body::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 22px;
+      background: #d4c4a8;
+      clip-path: polygon(0 0, 100% 8%, 100% 92%, 0 100%, 22% 50%);
+    }
+
+    /* right fold */
+    .ribbon-body::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 22px;
+      background: #d4c4a8;
+      clip-path: polygon(0 8%, 100% 0, 78% 50%, 100% 100%, 0 92%);
+    }
+
+    /* subtle wave top/bottom */
+    .ribbon-wave {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .ribbon-text {
+      position: relative;
+      z-index: 1;
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 16px;
+      color: #5a3e28;
+    }
+
+    /* ── NAMES ── */
     .names {
       font-family: 'Great Vibes', cursive;
-      font-size: 86px;
+      font-size: 74px;
+      color: #b05520;
       line-height: 1.05;
-      color: #f5f0e8;
+      margin-top: 12px;
     }
 
-    .amp {
-      display: block;
-      font-size: 52px;
-      color: #c9a060;
-      line-height: 1;
-      margin: 4px 0;
-    }
-
-    .rule {
-      width: 48px;
-      height: 1px;
-      background: #c9a060;
-      margin: 32px auto;
-      opacity: 0.6;
-    }
-
-    .date-big {
-      font-family: 'Playfair Display', serif;
-      font-size: 52px;
+    /* ── DATE ── */
+    .date {
+      font-family: 'Caveat', cursive;
+      font-size: 30px;
       font-weight: 700;
-      color: #f5f0e8;
-      line-height: 1.1;
-      letter-spacing: -1px;
+      color: #2a2a2a;
+      letter-spacing: 5px;
+      margin-top: 4px;
     }
 
-    .date-month {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-style: italic;
-      color: #c9a060;
-      letter-spacing: 3px;
+    /* ── PLACE ── */
+    .place {
+      font-family: 'Caveat', cursive;
+      font-size: 16px;
+      color: #999;
       margin-top: 6px;
+      letter-spacing: 1px;
     }
 
-    .date-year {
-      font-size: 11px;
-      font-weight: 300;
-      letter-spacing: 8px;
-      color: rgba(245,240,232,0.4);
-      text-transform: uppercase;
-      margin-top: 8px;
-    }
-
-    .rule2 {
-      width: 48px;
-      height: 1px;
-      background: #c9a060;
-      margin: 32px auto;
-      opacity: 0.6;
-    }
-
-    .save-msg {
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: rgba(245,240,232,0.5);
-      line-height: 2;
-    }
-
-    .save-msg strong {
-      color: #c9a060;
-      font-weight: 500;
-    }
-
-    /* ── DOWNLOAD BUTTON ── */
+    /* ── DOWNLOAD ── */
     .dl-btn {
-      padding: 13px 40px;
-      background: #1c1510;
-      color: #c9a060;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      border: 1px solid #c9a060;
+      padding: 12px 40px;
+      background: #2a2a2a;
+      color: white;
+      font-family: 'Caveat', cursive;
+      font-size: 18px;
+      letter-spacing: 2px;
+      border: none;
       cursor: pointer;
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.2s;
     }
 
-    .dl-btn:hover {
-      background: #c9a060;
-      color: #1c1510;
-    }
+    .dl-btn:hover { background: #b05520; }
 
-    @media (max-width: 600px) {
-      #card { width: 100%; padding: 48px 28px 40px; }
-      .names { font-size: 64px; }
-      .date-big { font-size: 40px; }
+    @media (max-width: 500px) {
+      #card { width: 100%; padding: 28px 20px 36px; }
+      .names { font-size: 58px; }
     }
   </style>
 </head>
 <body>
 
   <div id="card">
-    <p class="nos-casamos">¡Nos Casamos!</p>
 
-    <div class="names">
-      Raúl
-      <span class="amp">&amp;</span>
-      Valeria
+    <!-- SAVE THE DATE en arco — igual que el ejemplo -->
+    <svg class="svg-title" viewBox="0 0 360 80" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="arc" d="M 10 72 Q 180 0 350 72" />
+      </defs>
+      <text
+        font-family="Caveat, cursive"
+        font-size="30"
+        font-weight="700"
+        fill="#1a1a1a"
+        letter-spacing="2"
+      >
+        <textPath href="#arc" startOffset="50%" text-anchor="middle">
+          ≥ SAVE THE DATE ≤
+        </textPath>
+      </text>
+    </svg>
+
+    <!-- FOTO DEL GATO -->
+    <!-- Guarda la foto del gato como "gato.jpg" en la misma carpeta que este HTML -->
+    <div class="cat-circle">
+      <img
+        src="gato.jpg"
+        alt="Nuestro gato"
+        onerror="this.style.display='none'; this.parentElement.innerHTML='🐱';"
+      />
     </div>
 
-    <div class="rule"></div>
+    <!-- RIBBON -->
+    <div class="ribbon-outer">
+      <div class="ribbon-body"></div>
+      <span class="ribbon-text">¡Mis papás se casan!</span>
+    </div>
 
-    <p class="date-big">06</p>
-    <p class="date-month">Marzo</p>
-    <p class="date-year">2027</p>
+    <!-- NAMES -->
+    <p class="names">Raúl &amp; Valeria</p>
 
-    <div class="rule2"></div>
+    <!-- DATE -->
+    <p class="date">06 · 03 · 2027</p>
 
-    <p class="save-msg">
-      <strong>Guarda la fecha</strong><br/>
-      Casona los Paltos · Paine<br/>
-      19:00 hrs
-    </p>
+    <!-- PLACE -->
+    <p class="place">Casona los Paltos · Paine</p>
+
   </div>
 
-  <button class="dl-btn" onclick="downloadPNG()">↓ &nbsp; Descargar PNG</button>
+  <button class="dl-btn" onclick="downloadPNG()">↓ Descargar PNG</button>
 
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script>
@@ -182,15 +228,15 @@
       btn.textContent = 'Generando...';
       html2canvas(document.getElementById('card'), {
         scale: 3,
-        backgroundColor: '#1c1510',
         useCORS: true,
+        allowTaint: true,
         logging: false
       }).then(canvas => {
         const link = document.createElement('a');
         link.download = 'save-the-date-raul-valeria.png';
         link.href = canvas.toDataURL('image/png');
         link.click();
-        btn.textContent = '↓   Descargar PNG';
+        btn.textContent = '↓ Descargar PNG';
       });
     }
   </script>
