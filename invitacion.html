@@ -4,510 +4,728 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Raúl & Valeria — 06.03.2027</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --gold: #c9a84c;
-      --gold-light: #e8d5a3;
-      --dark: #0e0e0e;
-      --dark2: #1a1710;
-      --cream: #f5f0e8;
-      --text-light: rgba(255,255,255,0.85);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-
     body {
-      background: var(--dark);
-      color: white;
       font-family: 'Montserrat', sans-serif;
+      background: #faf8f5;
+      color: #2a2a2a;
       overflow-x: hidden;
     }
 
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(250,248,245,0.96);
+      backdrop-filter: blur(10px);
+      padding: 0 28px;
+      height: 58px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+
+    .nav-logo {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: #2a2a2a;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #888;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #7a1a1a; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #2a2a2a;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 58px; left: 0; right: 0;
+      background: #faf8f5;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 20px 28px 28px;
+      z-index: 199;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #555;
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
     /* ── HERO ── */
+    /*
+      Para agregar una foto de fondo:
+      Cambia el background del .hero por:
+      background: linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.52)), url('TU_FOTO.jpg') center/cover no-repeat;
+    */
     .hero {
       min-height: 100vh;
+      padding: 100px 24px 80px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 40px 24px;
       position: relative;
-      background:
-        radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
-        linear-gradient(180deg, #0e0b06 0%, #1a1508 50%, #0e0b06 100%);
+      background: linear-gradient(rgba(0,0,0,0.54), rgba(0,0,0,0.54)),
+                  linear-gradient(145deg, #2d2520 0%, #1a1410 50%, #2a201a 100%);
+      color: white;
       overflow: hidden;
     }
 
-    /* Animated particles */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        radial-gradient(circle, rgba(201,168,76,0.15) 1px, transparent 1px),
-        radial-gradient(circle, rgba(201,168,76,0.08) 1px, transparent 1px);
-      background-size: 60px 60px, 30px 30px;
-      background-position: 0 0, 15px 15px;
-      animation: shimmer 8s linear infinite;
+      background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
       pointer-events: none;
     }
 
-    @keyframes shimmer {
-      0%   { opacity: 0.4; transform: translateY(0); }
-      50%  { opacity: 0.8; }
-      100% { opacity: 0.4; transform: translateY(-10px); }
-    }
-
-    .hero-label {
-      font-size: 11px;
+    .hero-tag {
+      font-size: 10px;
       letter-spacing: 6px;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 32px;
-      animation: fadeUp 1s ease both;
-      animation-delay: 0.2s;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 36px;
+      position: relative;
+      animation: up 0.8s ease both 0.1s;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(56px, 14vw, 120px);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -1px;
+      position: relative;
+      animation: up 0.8s ease both 0.3s;
     }
 
     .hero-names {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(72px, 14vw, 140px);
-      line-height: 1;
-      background: linear-gradient(135deg, #e8d5a3 0%, #c9a84c 40%, #f0e0b0 70%, #c9a84c 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: fadeUp 1s ease both;
-      animation-delay: 0.4s;
-      filter: drop-shadow(0 4px 20px rgba(201,168,76,0.3));
-    }
-
-    .hero-amp {
-      display: block;
-      font-size: clamp(40px, 7vw, 80px);
-      opacity: 0.7;
-      margin: -8px 0;
-    }
-
-    .hero-date {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(16px, 3vw, 22px);
-      letter-spacing: 8px;
-      color: var(--gold-light);
-      margin-top: 24px;
-      animation: fadeUp 1s ease both;
-      animation-delay: 0.6s;
-    }
-
-    .hero-divider {
-      width: 80px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold), transparent);
-      margin: 28px auto;
-      animation: fadeUp 1s ease both;
-      animation-delay: 0.7s;
-    }
-
-    .hero-subtitle {
-      font-size: 13px;
-      letter-spacing: 3px;
+      font-size: clamp(13px, 2.5vw, 17px);
+      font-weight: 500;
+      letter-spacing: 7px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      animation: fadeUp 1s ease both;
-      animation-delay: 0.8s;
+      color: rgba(255,255,255,0.75);
+      margin-top: 20px;
+      position: relative;
+      animation: up 0.8s ease both 0.5s;
     }
 
-    .scroll-hint {
+    .hero-rule {
+      width: 56px;
+      height: 1px;
+      background: rgba(255,255,255,0.25);
+      margin: 24px auto;
+      position: relative;
+      animation: up 0.8s ease both 0.6s;
+    }
+
+    .hero-sub {
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: rgba(255,255,255,0.4);
+      position: relative;
+      animation: up 0.8s ease both 0.7s;
+    }
+
+    .hero-scroll {
       position: absolute;
       bottom: 32px;
       left: 50%;
       transform: translateX(-50%);
+      color: rgba(255,255,255,0.35);
+      font-size: 22px;
+      text-decoration: none;
+      animation: bob 2.2s ease infinite;
+    }
+
+    @keyframes up  { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:none; } }
+    @keyframes bob { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(7px); } }
+
+    /* ── GENERIC SECTION ── */
+    .sec {
+      padding: 80px 24px;
+    }
+
+    .sec-in {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h2.title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 6vw, 52px);
+      font-weight: 700;
+      color: #7a1a1a;
+      margin-bottom: 20px;
+    }
+
+    .body-text {
+      font-size: 15px;
+      line-height: 1.9;
+      color: #666;
+    }
+
+    .big-detail {
+      font-size: clamp(18px, 3vw, 24px);
+      font-weight: 500;
+      color: #2a2a2a;
+      margin-top: 6px;
+      line-height: 1.6;
+    }
+
+    .sub-detail {
+      font-size: 13px;
+      color: #999;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .w { background: #ffffff; }
+    .c { background: #eeebe4; }
+
+    /* ── PHOTO PLACEHOLDER ── */
+    .couple-photo {
+      margin: 40px auto 0;
+      max-width: 440px;
+      aspect-ratio: 3/4;
+      background: linear-gradient(145deg, #d4cfc8, #bfb8ae);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,0.3);
-      font-size: 10px;
-      letter-spacing: 3px;
+      justify-content: center;
+      color: #8a8078;
+      font-size: 12px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      animation: bounce 2s ease infinite;
+      gap: 10px;
     }
 
-    .scroll-hint::after {
-      content: '';
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%       { transform: translateX(-50%) translateY(6px); }
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .couple-photo .ph-ico { font-size: 36px; opacity: 0.45; }
 
     /* ── COUNTDOWN ── */
-    .countdown-section {
-      background: var(--dark2);
-      padding: 80px 24px;
-      text-align: center;
-      border-top: 1px solid rgba(201,168,76,0.15);
-      border-bottom: 1px solid rgba(201,168,76,0.15);
-    }
-
-    .section-eyebrow {
-      font-size: 10px;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 40px;
-    }
-
-    .countdown-grid {
+    .cd-row {
       display: flex;
       justify-content: center;
-      gap: clamp(16px, 4vw, 48px);
+      align-items: flex-start;
+      gap: clamp(12px, 4vw, 48px);
+      margin-top: 40px;
       flex-wrap: wrap;
     }
 
-    .countdown-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 80px;
-    }
+    .cd-item { text-align: center; }
 
-    .countdown-num {
+    .cd-n {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(48px, 10vw, 80px);
+      font-size: clamp(40px, 9vw, 72px);
       font-weight: 700;
+      color: #7a1a1a;
       line-height: 1;
-      background: linear-gradient(135deg, #e8d5a3, #c9a84c);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
       min-width: 2ch;
-      text-align: center;
     }
 
-    .countdown-label {
-      font-size: 10px;
+    .cd-l {
+      font-size: 9px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      margin-top: 8px;
+      color: #aaa;
+      margin-top: 6px;
     }
 
-    .countdown-sep {
+    .cd-colon {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(40px, 8vw, 64px);
-      color: rgba(201,168,76,0.3);
-      align-self: flex-start;
-      padding-top: 4px;
-      line-height: 1;
+      font-size: clamp(32px, 7vw, 56px);
+      color: #ccc;
+      line-height: 1.1;
     }
 
-    /* ── DETAILS ── */
-    .details-section {
-      padding: 100px 24px;
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2px;
+    /* ── TIMELINE ── */
+    .timeline {
+      max-width: 380px;
+      margin: 36px auto 0;
     }
 
-    .detail-card {
-      padding: 52px 40px;
-      text-align: center;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid rgba(201,168,76,0.12);
-      transition: border-color 0.3s, background 0.3s;
-      position: relative;
+    .tl-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .tl-row:last-child { border: none; }
+
+    .tl-hr {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #7a1a1a;
+      min-width: 72px;
+      text-align: right;
+    }
+
+    .tl-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #7a1a1a;
+      flex-shrink: 0;
+    }
+
+    .tl-ev {
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #666;
+    }
+
+    /* ── PERSON SECTIONS ── */
+    .person-wrap { position: relative; }
+
+    .person-bg {
+      width: 100%;
+      height: clamp(320px, 55vw, 560px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
     }
 
-    .detail-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 0%, rgba(201,168,76,0.05), transparent 70%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .detail-card:hover { border-color: rgba(201,168,76,0.4); }
-    .detail-card:hover::before { opacity: 1; }
-
-    .detail-icon {
-      font-size: 28px;
-      margin-bottom: 20px;
+    /* Use an <img> inside .person-bg to add real photos */
+    .person-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       display: block;
-      filter: grayscale(0.3);
     }
 
-    .detail-card .section-eyebrow { margin-bottom: 12px; }
-
-    .detail-main {
+    .person-initial {
       font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      color: white;
-      line-height: 1.5;
-      margin-bottom: 8px;
+      font-size: clamp(100px, 25vw, 200px);
+      font-weight: 700;
+      color: rgba(255,255,255,0.07);
+      user-select: none;
+      letter-spacing: -4px;
     }
 
-    .detail-sub {
-      font-size: 12px;
-      color: rgba(255,255,255,0.4);
-      letter-spacing: 1px;
-    }
-
-    /* ── MESSAGE ── */
-    .message-section {
-      padding: 100px 24px;
+    .person-label {
+      padding: 28px 24px 36px;
       text-align: center;
-      background: linear-gradient(180deg, transparent, rgba(201,168,76,0.04), transparent);
     }
 
-    .message-quote {
+    .person-name {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(20px, 4vw, 32px);
-      font-style: italic;
-      color: rgba(255,255,255,0.75);
-      max-width: 600px;
-      margin: 0 auto 16px;
-      line-height: 1.7;
+      font-size: clamp(26px, 6vw, 44px);
+      font-weight: 700;
+      color: #7a1a1a;
+      letter-spacing: 3px;
+      text-transform: uppercase;
     }
 
-    .message-attr {
-      font-size: 11px;
-      letter-spacing: 3px;
-      color: var(--gold);
+    /* ── THANKS ── */
+    .thanks-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 36px 28px;
+      margin-top: 48px;
+    }
+
+    .thanks-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: 110px;
+    }
+
+    .thanks-av {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(145deg, #b0a8a0, #8a8078);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .thanks-av img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thanks-av.bride {
+      background: linear-gradient(145deg, #c8b0b0, #a08080);
+    }
+
+    .thanks-nm {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      font-style: italic;
+      color: #2a2a2a;
+      text-align: center;
+    }
+
+    .thanks-rl {
+      font-size: 10px;
+      letter-spacing: 2px;
       text-transform: uppercase;
+      color: #aaa;
+      text-align: center;
     }
 
     /* ── RSVP ── */
-    .rsvp-section {
-      padding: 100px 24px 120px;
+    .rsvp-sec {
+      background: #1e1712;
+      color: white;
       text-align: center;
-      background: var(--dark2);
-      border-top: 1px solid rgba(201,168,76,0.15);
+      padding: 90px 24px 110px;
     }
 
-    .rsvp-section h2 {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(48px, 8vw, 72px);
-      background: linear-gradient(135deg, #e8d5a3, #c9a84c);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 16px;
-    }
+    .rsvp-sec h2 { color: white; margin-bottom: 12px; }
 
-    .rsvp-deadline {
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
+    .rsvp-note {
+      font-size: 12px;
       letter-spacing: 2px;
-      margin-bottom: 48px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 44px;
     }
 
-    .rsvp-deadline strong {
-      color: var(--gold-light);
-    }
+    .rsvp-note strong { color: rgba(255,255,255,0.75); }
 
     .rsvp-btn {
       display: inline-block;
-      padding: 18px 56px;
-      background: linear-gradient(135deg, #c9a84c, #e8d5a3, #c9a84c);
-      background-size: 200% 100%;
-      color: #0e0b06;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
-      font-size: 12px;
+      padding: 15px 50px;
+      border: 1.5px solid rgba(255,255,255,0.45);
+      color: white;
+      font-size: 10px;
       letter-spacing: 4px;
       text-transform: uppercase;
       text-decoration: none;
-      transition: background-position 0.4s, transform 0.2s, box-shadow 0.3s;
-      box-shadow: 0 4px 24px rgba(201,168,76,0.25);
+      transition: background 0.3s, border-color 0.3s;
     }
 
     .rsvp-btn:hover {
-      background-position: 100% 0;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 40px rgba(201,168,76,0.4);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.8);
     }
 
     /* ── FOOTER ── */
     footer {
-      padding: 32px 24px;
+      background: #150f0a;
+      padding: 24px;
       text-align: center;
-      font-size: 11px;
-      letter-spacing: 2px;
+      font-size: 10px;
+      letter-spacing: 3px;
       color: rgba(255,255,255,0.2);
-      border-top: 1px solid rgba(255,255,255,0.05);
     }
 
-    /* ── Responsive ── */
-    @media (max-width: 600px) {
-      .countdown-sep { display: none; }
-      .details-section { padding: 60px 0; }
-      .detail-card { padding: 40px 24px; }
-    }
-
-    /* ── Scroll reveal ── */
-    .reveal {
+    /* ── Reveal ── */
+    .rev {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .rev.on { opacity: 1; transform: none; }
+
+    @media (max-width: 600px) {
+      .sec { padding: 60px 20px; }
+      .cd-colon { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── HERO ── -->
-  <section class="hero">
-    <p class="hero-label">Los novios tienen el honor de invitarle</p>
-    <div class="hero-names">
-      Raúl
-      <span class="hero-amp">&amp;</span>
-      Valeria
-    </div>
-    <p class="hero-date">06 · 03 · 2027</p>
-    <div class="hero-divider"></div>
-    <p class="hero-subtitle">Casona los Paltos &nbsp;·&nbsp; Paine</p>
-    <div class="scroll-hint">Desliza</div>
+  <!-- NAV -->
+  <nav>
+    <a href="#top" class="nav-logo">RAÚL &amp; VALERIA</a>
+    <ul class="nav-links">
+      <li><a href="#lugar">Lugar</a></li>
+      <li><a href="#horario">Horario</a></li>
+      <li><a href="#vestimenta">Vestimenta</a></li>
+      <li><a href="#gracias">Gracias</a></li>
+      <li><a href="#rsvp">RSVP</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#lugar"      onclick="toggleNav()">Lugar</a>
+    <a href="#horario"    onclick="toggleNav()">Horario</a>
+    <a href="#vestimenta" onclick="toggleNav()">Vestimenta</a>
+    <a href="#gracias"    onclick="toggleNav()">Gracias</a>
+    <a href="#rsvp"       onclick="toggleNav()">RSVP</a>
+  </div>
+
+  <!-- HERO -->
+  <!-- Para poner tu foto de fondo, reemplaza el background del .hero en el CSS por:
+       background: linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.52)), url('TU_FOTO.jpg') center/cover no-repeat; -->
+  <section class="hero" id="top">
+    <p class="hero-tag">Con la bendición de nuestras familias</p>
+    <h1 class="hero-title">INVITACIÓN<br>DE BODA</h1>
+    <p class="hero-names">Raúl &nbsp;&amp;&nbsp; Valeria</p>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">06 · 03 · 2027 &nbsp;·&nbsp; Casona los Paltos, Paine</p>
+    <a class="hero-scroll" href="#nosotros">↓</a>
   </section>
 
-  <!-- ── COUNTDOWN ── -->
-  <section class="countdown-section">
-    <p class="section-eyebrow reveal">Faltan</p>
-    <div class="countdown-grid reveal">
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-days">--</span>
-        <span class="countdown-label">Días</span>
+  <!-- NOS CASAMOS -->
+  <section class="sec w" id="nosotros">
+    <div class="sec-in rev">
+      <h2 class="title">¡Nos Casamos!</h2>
+      <p class="body-text">
+        Queremos compartir contigo el día más especial de nuestras vidas.<br/>
+        Nos alegra que puedas acompañarnos en esta celebración.
+      </p>
+      <!-- Para agregar tu foto: reemplaza el div.couple-photo por <img src="TU_FOTO.jpg" style="max-width:440px;width:100%;display:block;margin:40px auto 0;"> -->
+      <div class="couple-photo">
+        <span class="ph-ico">📷</span>
+        Agrega tu foto aquí
       </div>
-      <span class="countdown-sep">:</span>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-hours">--</span>
-        <span class="countdown-label">Horas</span>
-      </div>
-      <span class="countdown-sep">:</span>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-mins">--</span>
-        <span class="countdown-label">Minutos</span>
-      </div>
-      <span class="countdown-sep">:</span>
-      <div class="countdown-item">
-        <span class="countdown-num" id="cd-secs">--</span>
-        <span class="countdown-label">Segundos</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── DETAILS ── -->
-  <section class="details-section">
-    <div class="detail-card reveal">
-      <span class="detail-icon">🗓</span>
-      <p class="section-eyebrow">Fecha</p>
-      <p class="detail-main">Sábado<br />6 de Marzo, 2027</p>
-    </div>
-    <div class="detail-card reveal">
-      <span class="detail-icon">🕖</span>
-      <p class="section-eyebrow">Hora</p>
-      <p class="detail-main">19:00 hrs</p>
-      <p class="detail-sub">Puertas abren 18:30</p>
-    </div>
-    <div class="detail-card reveal">
-      <span class="detail-icon">📍</span>
-      <p class="section-eyebrow">Lugar</p>
-      <p class="detail-main">Casona los Paltos</p>
-      <p class="detail-sub">Paine, Región Metropolitana</p>
-    </div>
-    <div class="detail-card reveal">
-      <span class="detail-icon">🤵</span>
-      <p class="section-eyebrow">Vestimenta</p>
-      <p class="detail-main">Etiqueta</p>
-      <p class="detail-sub">Traje de gala · Vestido largo</p>
     </div>
   </section>
 
-  <!-- ── QUOTE ── -->
-  <section class="message-section">
-    <p class="message-quote reveal">
-      "El amor no se mira el uno al otro,<br />
-      el amor es mirar juntos en la misma dirección."
-    </p>
-    <p class="message-attr reveal">Antoine de Saint-Exupéry</p>
+  <!-- LUGAR -->
+  <section class="sec c" id="lugar">
+    <div class="sec-in rev">
+      <h2 class="title">Lugar</h2>
+      <p class="big-detail">Casona los Paltos</p>
+      <p class="sub-detail">Paine, Región Metropolitana</p>
+    </div>
   </section>
 
-  <!-- ── RSVP ── -->
-  <section class="rsvp-section">
-    <h2 class="reveal">¿Nos acompañas?</h2>
-    <p class="rsvp-deadline reveal">
+  <!-- FECHA + COUNTDOWN -->
+  <section class="sec w">
+    <div class="sec-in rev">
+      <h2 class="title">Fecha</h2>
+      <p class="big-detail">Sábado 6 de Marzo, 2027</p>
+      <div class="cd-row">
+        <div class="cd-item">
+          <div class="cd-n" id="cd-d">--</div>
+          <div class="cd-l">Días</div>
+        </div>
+        <span class="cd-colon">:</span>
+        <div class="cd-item">
+          <div class="cd-n" id="cd-h">--</div>
+          <div class="cd-l">Horas</div>
+        </div>
+        <span class="cd-colon">:</span>
+        <div class="cd-item">
+          <div class="cd-n" id="cd-m">--</div>
+          <div class="cd-l">Min</div>
+        </div>
+        <span class="cd-colon">:</span>
+        <div class="cd-item">
+          <div class="cd-n" id="cd-s">--</div>
+          <div class="cd-l">Seg</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HORARIO -->
+  <section class="sec c" id="horario">
+    <div class="sec-in rev">
+      <h2 class="title">Horario</h2>
+      <div class="timeline">
+        <div class="tl-row">
+          <span class="tl-hr">18:30</span>
+          <span class="tl-dot"></span>
+          <span class="tl-ev">Llegada de invitados</span>
+        </div>
+        <div class="tl-row">
+          <span class="tl-hr">19:00</span>
+          <span class="tl-dot"></span>
+          <span class="tl-ev">Ceremonia</span>
+        </div>
+        <div class="tl-row">
+          <span class="tl-hr">20:00</span>
+          <span class="tl-dot"></span>
+          <span class="tl-ev">Recepción &amp; Cena</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VESTIMENTA -->
+  <section class="sec w" id="vestimenta">
+    <div class="sec-in rev">
+      <h2 class="title">Vestimenta</h2>
+      <p class="big-detail">Etiqueta</p>
+      <p class="sub-detail">Traje de gala &nbsp;·&nbsp; Vestido largo</p>
+    </div>
+  </section>
+
+  <!-- RAÚL -->
+  <!-- Para agregar foto: pon un <img src="foto-raul.jpg"> dentro de .person-bg -->
+  <div class="person-wrap">
+    <div class="person-bg" style="background: linear-gradient(160deg, #2a2018 0%, #1a1510 100%);">
+      <span class="person-initial">R</span>
+    </div>
+    <div class="person-label" style="background:#eeebe4;">
+      <p class="person-name">Raúl</p>
+    </div>
+  </div>
+
+  <!-- VALERIA -->
+  <!-- Para agregar foto: pon un <img src="foto-valeria.jpg"> dentro de .person-bg -->
+  <div class="person-wrap">
+    <div class="person-bg" style="background: linear-gradient(160deg, #352218 0%, #251510 100%);">
+      <span class="person-initial">V</span>
+    </div>
+    <div class="person-label" style="background:#ffffff;">
+      <p class="person-name">Valeria</p>
+    </div>
+  </div>
+
+  <!-- GRACIAS -->
+  <section class="sec c" id="gracias">
+    <div class="sec-in">
+      <p class="rev" style="font-size:10px;letter-spacing:5px;text-transform:uppercase;color:#aaa;margin-bottom:10px;">Con especial cariño</p>
+      <h2 class="title rev">Gracias a nuestros amigos</h2>
+      <p class="body-text rev">Gracias por ser parte de nuestra historia.</p>
+
+      <div class="thanks-grid rev">
+
+        <!-- Del novio — reemplaza "N" por la inicial y pon el nombre real -->
+        <div class="thanks-card">
+          <!-- Para foto real: <div class="thanks-av"><img src="foto.jpg" /></div> -->
+          <div class="thanks-av">N</div>
+          <p class="thanks-nm">Nombre</p>
+          <p class="thanks-rl">Del novio</p>
+        </div>
+
+        <div class="thanks-card">
+          <div class="thanks-av">N</div>
+          <p class="thanks-nm">Nombre</p>
+          <p class="thanks-rl">Del novio</p>
+        </div>
+
+        <!-- De la novia -->
+        <div class="thanks-card">
+          <div class="thanks-av bride">N</div>
+          <p class="thanks-nm">Nombre</p>
+          <p class="thanks-rl">De la novia</p>
+        </div>
+
+        <div class="thanks-card">
+          <div class="thanks-av bride">N</div>
+          <p class="thanks-nm">Nombre</p>
+          <p class="thanks-rl">De la novia</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RSVP -->
+  <section class="rsvp-sec" id="rsvp">
+    <h2 class="title rev">¿Nos acompañas?</h2>
+    <p class="rsvp-note rev">
       Confirma tu asistencia antes del <strong>6 de Enero de 2027</strong>
     </p>
     <a
       href="REEMPLAZA_CON_TU_LINK_DE_GOOGLE_FORM"
       target="_blank"
       rel="noopener noreferrer"
-      class="rsvp-btn reveal"
+      class="rsvp-btn rev"
     >
       Confirmar Asistencia
     </a>
   </section>
 
-  <!-- ── FOOTER ── -->
+  <!-- FOOTER -->
   <footer>
-    <p>Raúl &amp; Valeria · 2027</p>
+    RAÚL &amp; VALERIA &nbsp;·&nbsp; 2027
   </footer>
 
   <script>
     // ── Countdown ──
     const wedding = new Date('2027-03-06T19:00:00');
-
-    function pad(n) { return String(n).padStart(2, '0'); }
+    const pad = n => String(n).padStart(2, '0');
 
     function tick() {
-      const now  = new Date();
-      const diff = wedding - now;
+      const diff = wedding - new Date();
       if (diff <= 0) {
-        document.getElementById('cd-days').textContent  = '00';
-        document.getElementById('cd-hours').textContent = '00';
-        document.getElementById('cd-mins').textContent  = '00';
-        document.getElementById('cd-secs').textContent  = '00';
+        ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent = '00');
         return;
       }
-      const days  = Math.floor(diff / 86400000);
-      const hours = Math.floor((diff % 86400000) / 3600000);
-      const mins  = Math.floor((diff % 3600000)  / 60000);
-      const secs  = Math.floor((diff % 60000)    / 1000);
-      document.getElementById('cd-days').textContent  = pad(days);
-      document.getElementById('cd-hours').textContent = pad(hours);
-      document.getElementById('cd-mins').textContent  = pad(mins);
-      document.getElementById('cd-secs').textContent  = pad(secs);
+      document.getElementById('cd-d').textContent = pad(Math.floor(diff / 86400000));
+      document.getElementById('cd-h').textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      document.getElementById('cd-m').textContent = pad(Math.floor((diff % 3600000) / 60000));
+      document.getElementById('cd-s').textContent = pad(Math.floor((diff % 60000) / 1000));
     }
 
     tick();
     setInterval(tick, 1000);
 
     // ── Scroll reveal ──
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-      { threshold: 0.15 }
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); }),
+      { threshold: 0.1 }
     );
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.rev').forEach(el => obs.observe(el));
+
+    // ── Mobile nav ──
+    function toggleNav() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
   </script>
 
 </body>
