@@ -9,185 +9,148 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #e8e3dc;
+      background: #ddd8d0;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 40px 16px;
+      gap: 24px;
       font-family: 'Montserrat', sans-serif;
-      gap: 28px;
     }
 
-    /* ── CARD ── */
     #card {
-      width: 580px;
-      background: #fdf9f4;
-      padding: 52px 56px 48px;
-      position: relative;
+      width: 560px;
+      background: #1c1510;
+      padding: 64px 52px 56px;
       text-align: center;
-      /* Double border effect */
-      box-shadow:
-        0 0 0 1px #c9a060,
-        0 0 0 9px #fdf9f4,
-        0 0 0 10px #c9a060,
-        0 16px 60px rgba(0,0,0,0.12);
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
     }
 
-    /* Corner ornaments */
-    #card::before,
-    #card::after,
-    .corner-bl,
-    .corner-tr {
+    /* thin gold frame inside */
+    #card::before {
       content: '';
       position: absolute;
-      width: 28px;
-      height: 28px;
-      border-color: #c9a060;
-      border-style: solid;
+      inset: 12px;
+      border: 1px solid rgba(201,160,96,0.35);
+      pointer-events: none;
     }
 
-    #card::before { top: 20px; left: 20px; border-width: 1.5px 0 0 1.5px; }
-    #card::after  { bottom: 20px; right: 20px; border-width: 0 1.5px 1.5px 0; }
-    .corner-bl { bottom: 20px; left: 20px; border-width: 0 0 1.5px 1.5px; }
-    .corner-tr { top: 20px; right: 20px; border-width: 1.5px 1.5px 0 0; }
-
-    /* ── CONTENT ── */
-    .save-label {
-      font-size: 10px;
+    .nos-casamos {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11px;
       font-weight: 500;
       letter-spacing: 7px;
       text-transform: uppercase;
       color: #c9a060;
-      margin-bottom: 28px;
+      margin-bottom: 32px;
     }
 
     .names {
       font-family: 'Great Vibes', cursive;
-      font-size: 88px;
+      font-size: 86px;
       line-height: 1.05;
-      color: #2a1f14;
-      letter-spacing: 1px;
+      color: #f5f0e8;
     }
 
     .amp {
       display: block;
-      font-size: 56px;
+      font-size: 52px;
       color: #c9a060;
       line-height: 1;
-      margin: 2px 0;
+      margin: 4px 0;
     }
 
     .rule {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin: 28px auto;
-      max-width: 280px;
-    }
-
-    .rule::before,
-    .rule::after {
-      content: '';
-      flex: 1;
+      width: 48px;
       height: 1px;
-      background: linear-gradient(to right, transparent, #c9a060, transparent);
-    }
-
-    .rule-diamond {
-      width: 6px;
-      height: 6px;
       background: #c9a060;
-      transform: rotate(45deg);
-      flex-shrink: 0;
+      margin: 32px auto;
+      opacity: 0.6;
     }
 
-    .date-line {
+    .date-big {
       font-family: 'Playfair Display', serif;
-      font-size: 26px;
+      font-size: 52px;
       font-weight: 700;
-      color: #2a1f14;
-      letter-spacing: 1px;
-      margin-bottom: 6px;
+      color: #f5f0e8;
+      line-height: 1.1;
+      letter-spacing: -1px;
     }
 
-    .year-line {
-      font-size: 13px;
+    .date-month {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-style: italic;
+      color: #c9a060;
+      letter-spacing: 3px;
+      margin-top: 6px;
+    }
+
+    .date-year {
+      font-size: 11px;
       font-weight: 300;
       letter-spacing: 8px;
-      color: #8a7a6a;
+      color: rgba(245,240,232,0.4);
       text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .venue-line {
-      font-size: 13px;
-      letter-spacing: 2px;
-      color: #6a5a4a;
-      text-transform: uppercase;
-      line-height: 1.8;
+      margin-top: 8px;
     }
 
     .rule2 {
+      width: 48px;
       height: 1px;
-      background: linear-gradient(to right, transparent, #d4b88a, transparent);
-      margin: 24px 0;
+      background: #c9a060;
+      margin: 32px auto;
+      opacity: 0.6;
     }
 
-    .time-line {
+    .save-msg {
       font-size: 11px;
+      font-weight: 400;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: #aaa;
+      color: rgba(245,240,232,0.5);
+      line-height: 2;
     }
 
-    .footer-note {
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+    .save-msg strong {
       color: #c9a060;
-      margin-top: 28px;
+      font-weight: 500;
     }
 
     /* ── DOWNLOAD BUTTON ── */
     .dl-btn {
-      padding: 14px 44px;
-      background: #2a1f14;
-      color: white;
+      padding: 13px 40px;
+      background: #1c1510;
+      color: #c9a060;
       font-family: 'Montserrat', sans-serif;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 500;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      border: none;
+      border: 1px solid #c9a060;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.3s, color 0.3s;
     }
 
-    .dl-btn:hover { background: #7a1a1a; }
-
-    .dl-hint {
-      font-size: 11px;
-      color: #888;
-      letter-spacing: 1px;
-      text-align: center;
+    .dl-btn:hover {
+      background: #c9a060;
+      color: #1c1510;
     }
 
-    @media (max-width: 620px) {
-      #card { width: 100%; padding: 36px 28px 32px; }
+    @media (max-width: 600px) {
+      #card { width: 100%; padding: 48px 28px 40px; }
       .names { font-size: 64px; }
-      .amp { font-size: 42px; }
+      .date-big { font-size: 40px; }
     }
   </style>
 </head>
 <body>
 
   <div id="card">
-    <span class="corner-bl"></span>
-    <span class="corner-tr"></span>
-
-    <p class="save-label">Save the Date</p>
+    <p class="nos-casamos">¡Nos Casamos!</p>
 
     <div class="names">
       Raúl
@@ -195,40 +158,31 @@
       Valeria
     </div>
 
-    <div class="rule"><span class="rule-diamond"></span></div>
+    <div class="rule"></div>
 
-    <p class="date-line">Sábado, 6 de Marzo</p>
-    <p class="year-line">2027</p>
-
-    <p class="venue-line">
-      Casona los Paltos<br />
-      Paine, Región Metropolitana
-    </p>
+    <p class="date-big">06</p>
+    <p class="date-month">Marzo</p>
+    <p class="date-year">2027</p>
 
     <div class="rule2"></div>
 
-    <p class="time-line">19:00 hrs</p>
-
-    <p class="footer-note">Invitación formal próximamente</p>
+    <p class="save-msg">
+      <strong>Guarda la fecha</strong><br/>
+      Casona los Paltos · Paine<br/>
+      19:00 hrs
+    </p>
   </div>
 
-  <button class="dl-btn" onclick="downloadPNG()">
-    ↓ &nbsp; Descargar como PNG
-  </button>
+  <button class="dl-btn" onclick="downloadPNG()">↓ &nbsp; Descargar PNG</button>
 
-  <p class="dl-hint">La imagen se descarga sin el botón</p>
-
-  <!-- html2canvas para exportar PNG -->
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <script>
     function downloadPNG() {
       const btn = document.querySelector('.dl-btn');
-      const hint = document.querySelector('.dl-hint');
       btn.textContent = 'Generando...';
-
       html2canvas(document.getElementById('card'), {
         scale: 3,
-        backgroundColor: '#fdf9f4',
+        backgroundColor: '#1c1510',
         useCORS: true,
         logging: false
       }).then(canvas => {
@@ -236,7 +190,7 @@
         link.download = 'save-the-date-raul-valeria.png';
         link.href = canvas.toDataURL('image/png');
         link.click();
-        btn.textContent = '↓   Descargar como PNG';
+        btn.textContent = '↓   Descargar PNG';
       });
     }
   </script>
