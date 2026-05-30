@@ -264,20 +264,35 @@
     <span class="corner-deco br">✿</span>
 
     <!-- SAVE THE DATE en arco — igual que el ejemplo -->
-    <svg class="svg-title" viewBox="0 0 360 80" xmlns="http://www.w3.org/2000/svg">
+    <svg class="svg-title" viewBox="0 0 360 90" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <path id="arc" d="M 10 72 Q 180 0 350 72" />
+        <path id="arc" d="M 20 80 Q 180 10 340 80" />
+        <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%"   stop-color="#c87858" />
+          <stop offset="50%"  stop-color="#b05520" />
+          <stop offset="100%" stop-color="#c87858" />
+        </linearGradient>
       </defs>
+      <!-- shadow layer -->
       <text
         font-family="Caveat, cursive"
-        font-size="30"
+        font-size="28"
         font-weight="700"
-        fill="#1a1a1a"
-        letter-spacing="2"
+        fill="rgba(120,60,20,0.12)"
+        letter-spacing="3"
+        dy="2"
       >
-        <textPath href="#arc" startOffset="50%" text-anchor="middle">
-          ≥ SAVE THE DATE ≤
-        </textPath>
+        <textPath href="#arc" startOffset="50%" text-anchor="middle">❧ Save the Date ❧</textPath>
+      </text>
+      <!-- main text -->
+      <text
+        font-family="Caveat, cursive"
+        font-size="28"
+        font-weight="700"
+        fill="url(#titleGrad)"
+        letter-spacing="3"
+      >
+        <textPath href="#arc" startOffset="50%" text-anchor="middle">❧ Save the Date ❧</textPath>
       </text>
     </svg>
 
