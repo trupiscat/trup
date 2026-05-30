@@ -106,11 +106,25 @@
       object-position: center 20%;
     }
 
+    /* ── CORNER DECO ── */
+    .corner-deco {
+      position: absolute;
+      font-size: 16px;
+      opacity: 0.35;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    .corner-deco.tl { top: 18px;  left: 18px; }
+    .corner-deco.tr { top: 18px;  right: 18px; }
+    .corner-deco.bl { bottom: 18px; left: 18px; }
+    .corner-deco.br { bottom: 18px; right: 18px; }
+
     /* ── RIBBON ── */
     .ribbon-outer {
       position: relative;
       margin: 22px -8px 4px;
-      height: 46px;
+      height: 52px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -142,19 +156,12 @@
       clip-path: polygon(0 8%, 100% 0, 78% 50%, 100% 100%, 0 92%);
     }
 
-    /* subtle wave top/bottom */
-    .ribbon-wave {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
     .ribbon-text {
       position: relative;
       z-index: 1;
       font-family: 'Lora', serif;
       font-style: italic;
-      font-size: 16px;
+      font-size: 20px;
       color: #5a3e28;
     }
 
@@ -164,7 +171,28 @@
       font-size: 52px;
       color: #b05520;
       line-height: 1.05;
-      margin-top: 12px;
+      margin-top: 24px;
+    }
+
+    /* ── DIVIDER ── */
+    .mini-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 10px auto 6px;
+      color: #e87ca0;
+      opacity: 0.5;
+      font-size: 12px;
+      letter-spacing: 6px;
+    }
+
+    .mini-divider::before,
+    .mini-divider::after {
+      content: '';
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c9a8a0);
     }
 
     /* ── DATE ── */
@@ -174,16 +202,34 @@
       font-weight: 700;
       color: #2a2a2a;
       letter-spacing: 5px;
-      margin-top: 4px;
+      margin-top: 0;
     }
 
     /* ── PLACE ── */
     .place {
       font-family: 'Caveat', cursive;
       font-size: 16px;
-      color: #999;
-      margin-top: 6px;
+      color: #aaa;
+      margin-top: 4px;
       letter-spacing: 1px;
+    }
+
+    /* ── TIME ── */
+    .time-place {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .time-badge {
+      font-family: 'Caveat', cursive;
+      font-size: 14px;
+      color: #b05520;
+      background: rgba(176,85,32,0.08);
+      padding: 2px 10px;
+      border-radius: 20px;
     }
 
     /* ── DOWNLOAD ── */
@@ -210,6 +256,12 @@
 <body>
 
   <div id="card">
+
+    <!-- Corner decorations -->
+    <span class="corner-deco tl">✿</span>
+    <span class="corner-deco tr">✿</span>
+    <span class="corner-deco bl">✿</span>
+    <span class="corner-deco br">✿</span>
 
     <!-- SAVE THE DATE en arco — igual que el ejemplo -->
     <svg class="svg-title" viewBox="0 0 360 80" xmlns="http://www.w3.org/2000/svg">
@@ -260,11 +312,17 @@
     <!-- NAMES -->
     <p class="names">Raúl &amp; Valeria</p>
 
+    <!-- DIVIDER -->
+    <div class="mini-divider">♥</div>
+
     <!-- DATE -->
     <p class="date">06 · 03 · 2027</p>
 
-    <!-- PLACE -->
+    <!-- PLACE + TIME -->
     <p class="place">Casona los Paltos · Paine</p>
+    <div class="time-place">
+      <span class="time-badge">19:00 hrs</span>
+    </div>
 
   </div>
 
